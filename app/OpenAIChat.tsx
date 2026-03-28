@@ -9,6 +9,7 @@ export default function OpenAIChat() {
   const [mealtime, setMealtime] = useState("");
   const [occasion, setOccasion] = useState("");
   const [priceRange, setPriceRange] = useState("");
+  const [distance, setDistance] = useState("");
   const location = useGeoLocation();
 
   async function handleSubmit(e: React.FormEvent) {
@@ -23,6 +24,7 @@ export default function OpenAIChat() {
         Mealtime: ${mealtime}
         Occasion: ${occasion}
         Price range: ${priceRange}
+        Distance preference: ${distance}
       `;
       const res = await fetch("/api/openai", {
         method: "POST",
@@ -70,6 +72,17 @@ export default function OpenAIChat() {
           <option value="Cheap price">Cheap</option>
           <option value="Regular price">Regular price</option>
           <option value="Expensive price">Expensive</option>
+        </select>
+        <select
+          value={distance}
+          onChange={e => setDistance(e.target.value)}
+          className="border p-2"
+        >
+          <option value="">Select distance</option>
+          <option value="Walking distance">Walking distance</option>
+          <option value="Within 5 miles">Within 5 miles</option>
+          <option value="Within 10 miles">Within 10 miles</option>
+          <option value="No distance preference">No distance preference</option>
         </select>
         <textarea className="resize border p-2"
           value={prompt}
