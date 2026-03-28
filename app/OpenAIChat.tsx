@@ -1,28 +1,12 @@
 "use client";
-import { useEffect, useState } from "react";
-
+import { useState } from "react";
+import { useGeoLocation } from "./hooks/useGeoLocation";
 
 export default function OpenAIChat() {
   const [prompt, setPrompt] = useState("");
   const [response, setResponse] = useState("");
   const [loading, setLoading] = useState(false);
-  const [location, setLocation] = useState<string | null>(null);
-
-  // Get geolocation on mount
-  useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (pos) => {
-          setLocation(
-            `Latitude: ${pos.coords.latitude}, Longitude: ${pos.coords.longitude}`
-          );
-        },
-        (err) => {
-          setLocation(null);
-        }
-      );
-    }
-  }, []);
+  const location = useGeoLocation();
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
