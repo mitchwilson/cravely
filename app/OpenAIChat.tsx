@@ -7,6 +7,7 @@ export default function OpenAIChat() {
   const [response, setResponse] = useState("");
   const [loading, setLoading] = useState(false);
   const [mealtime, setMealtime] = useState("");
+  const [occasion, setOccasion] = useState("");
   const location = useGeoLocation();
 
   async function handleSubmit(e: React.FormEvent) {
@@ -19,6 +20,7 @@ export default function OpenAIChat() {
         ${prompt}
         User location: ${location}
         Mealtime: ${mealtime}
+        Occasion: ${occasion}
       `;
       const res = await fetch("/api/openai", {
         method: "POST",
@@ -46,6 +48,16 @@ export default function OpenAIChat() {
           <option value="Breakfast">Breakfast</option>
           <option value="Lunch">Lunch</option>
           <option value="Dinner">Dinner</option>
+        </select>
+        <select
+          value={prompt}
+          onChange={e => setOccasion(e.target.value)}
+          className="border p-2"
+        >
+          <option value="">Select occassion</option>
+          <option value="Normal">Normal</option>
+          <option value="Birthday">Birthday</option>
+          <option value="Date">Date</option>
         </select>
         <textarea className="resize border p-2"
           value={prompt}
