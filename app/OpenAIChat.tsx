@@ -56,7 +56,7 @@ export default function OpenAIChat() {
           onChange={e => setOccasion(e.target.value)}
           className="border p-2"
         >
-          <option value="">Select occassion</option>
+          <option value="">Select occasion</option>
           <option value="Normal">Normal</option>
           <option value="Birthday">Birthday</option>
           <option value="Date">Date</option>
@@ -75,7 +75,7 @@ export default function OpenAIChat() {
           value={prompt}
           onChange={e => setPrompt(e.target.value)}
           rows={4}
-          placeholder="Type your prompt here..."
+          placeholder="Tell us what you are craving ..."
           required
         />
         <button type="submit" disabled={loading} style={{ padding: 8 }}>
