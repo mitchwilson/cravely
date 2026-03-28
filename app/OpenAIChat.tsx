@@ -57,7 +57,7 @@ export default function OpenAIChat() {
           className="border p-2"
         >
           <option value="">Select occasion</option>
-          <option value="Normal">Normal</option>
+          <option value="Normal occasion">Normal occasion</option>
           <option value="Birthday">Birthday</option>
           <option value="Date">Date</option>
         </select>
