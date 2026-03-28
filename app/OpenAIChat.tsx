@@ -12,7 +12,7 @@ export default function OpenAIChat() {
   const [distance, setDistance] = useState("");
   const location = useGeoLocation();
 
-  async function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.SubmitEvent) {
     e.preventDefault();
     setLoading(true);
     setResponse("");
