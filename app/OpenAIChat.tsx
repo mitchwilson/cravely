@@ -42,7 +42,7 @@ export default function OpenAIChat() {
     <div>
       <form onSubmit={handleSubmit} className="flex flex-col gap-3">
         <select
-          value={prompt}
+          value={mealtime}
           onChange={e => setMealtime(e.target.value)}
           className="border p-2"
         >
@@ -52,7 +52,7 @@ export default function OpenAIChat() {
           <option value="Dinner">Dinner</option>
         </select>
         <select
-          value={prompt}
+          value={occasion}
           onChange={e => setOccasion(e.target.value)}
           className="border p-2"
         >
@@ -62,7 +62,7 @@ export default function OpenAIChat() {
           <option value="Date">Date</option>
         </select>
         <select
-          value={prompt}
+          value={priceRange}
           onChange={e => setPriceRange(e.target.value)}
           className="border p-2"
         >
