@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { useGeoLocation } from "./hooks/useGeoLocation";
+import ResponseUI from "./ResponseUI";
 
 export default function OpenAIChat() {
   const [prompt, setPrompt] = useState("");
@@ -101,8 +102,10 @@ export default function OpenAIChat() {
       {response && (
         <div>
           <strong>Response:</strong>
-          <div>{response}</div>
-        </div>
+          <div>
+            <ResponseUI response={response} />
+          </div>
+        </div> 
       )}
     </div>
   );
