@@ -4,6 +4,14 @@ function splitResponseSections(text: string): string[] {
   return text.split(/(?=\n?\d+\. )/g).map(s => s.trim()).filter(Boolean);
 }
 
+function createMapURL(text:string): string {
+    // const match = text.match(/- Address: (.*?)(?:\\n|$)/);
+    const match = text.match(/- Address:\s*(.+)/i);
+    const address = match ? match[1].trim() : "";
+    const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+    return mapsUrl;
+}
+
 interface ResponseUIProps {
   response: string;
 }
@@ -17,7 +25,10 @@ export default function ResponseUI({ response }: ResponseUIProps) {
       {
         sections.map(
             (section, i) => {
-                return <p key={i} className="whitespace-pre-line">{section}</p>
+                return <p key={i} className="whitespace-pre-line">
+                    {section}
+                    &nbsp;<a href={createMapURL(section)} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">View on Google Maps</a>
+                </p>
             }
         )
       }
