@@ -27,7 +27,9 @@ export default function ResponseUI({ response }: ResponseUIProps) {
             (section, i) => {
                 return <p key={i} className="whitespace-pre-line">
                     {section}
-                    &nbsp;<a href={createMapURL(section)} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">View on Google Maps</a>
+                    {i ? (
+                        <>&nbsp;<a href={createMapURL(section)} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">View on Google Maps</a></>
+                    ) : null}
                 </p>
             }
         )
