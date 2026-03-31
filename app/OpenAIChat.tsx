@@ -41,6 +41,15 @@ export default function OpenAIChat() {
     }
   }
 
+  function requestFormReset() {
+    setDistance("");  
+    setMealtime(""); 
+    setOccasion(""); 
+    setPriceRange(""); 
+    setPrompt("");
+    setResponse("");
+  }
+
   return (
     <div>
       <form onSubmit={handleSubmit} className="flex flex-col gap-3">
@@ -92,9 +101,13 @@ export default function OpenAIChat() {
           placeholder="Tell us what you are craving ..."
           required
         />
-        <button type="submit" disabled={loading} style={{ padding: 8 }}>
-          {loading ? "Loading..." : "Send"}
-        </button>
+        <div>
+
+          <button type="submit" disabled={loading} style={{ padding: 8 }}>
+            {loading ? "Loading..." : "Send"}
+          </button>
+          <button type="reset" style={{ padding: 8 }} onClick={() => { requestFormReset() }}>Reset</button>
+          </div>
       </form>
       {location && (
         <div className="text-xs text-zinc-500 mb-2">Detected location: {location}</div>
