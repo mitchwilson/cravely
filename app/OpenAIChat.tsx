@@ -114,9 +114,17 @@ export default function OpenAIChat() {
           <button type="reset"  className="border-2 border-purple-400 p-1 rounded-bl-lg rounded-tr-lg" onClick={() => { requestFormReset() }}>Reset</button>
           </div>
       </form>
-      {location && (
-        <div className="text-xs text-zinc-500 mb-2">Detected location: {location}</div>
-      )}
+      <div
+        className={`text-xs text-zinc-500 mb-2 transition-all duration-1000 ease-in-out transform
+          ${location
+            ? 'opacity-100 max-h-20 scale-110 translate-y-0'
+            : 'opacity-0 max-h-0 scale-90 -translate-y-4 overflow-hidden'}
+        `}
+        aria-live="polite"
+      >
+        <br></br>
+        {location && `Detected location: ${location}`}
+      </div>
       {response && (
         <div>
           <strong>Response:</strong>
