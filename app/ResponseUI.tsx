@@ -25,7 +25,7 @@ export default function ResponseUI({ response }: ResponseUIProps) {
       {
         sections.map(
             (section, i) => {
-                return <p key={i} className="whitespace-pre-line">
+                return <p key={i} className="whitespace-pre-line border-b-2 border-orange-400 p-4">
                     {section}
                     {i ? (
                         <>&nbsp;<a href={createMapURL(section)} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline">View on Google Maps</a></>

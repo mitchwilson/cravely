@@ -52,11 +52,12 @@ export default function OpenAIChat() {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-3 *:aria-selected:border-orange-400 *:focus:outline-none">
         <select
           value={mealtime}
           onChange={e => setMealtime(e.target.value)}
-          className="border p-2"
+          aria-selected={mealtime ? "true" : "false"}
+          className="border-2 border-purple-400 p-2 rounded-bl-lg rounded-tr-lg"
         >
           <option value="">Select mealtime</option>
           <option value="Breakfast">Breakfast</option>
@@ -66,7 +67,8 @@ export default function OpenAIChat() {
         <select
           value={occasion}
           onChange={e => setOccasion(e.target.value)}
-          className="border p-2"
+          aria-selected={occasion ? "true" : "false"}
+          className="border-2 border-purple-400 p-2 rounded-bl-lg rounded-tr-lg"
         >
           <option value="">Select occasion</option>
           <option value="Normal occasion">Normal occasion</option>
@@ -74,9 +76,10 @@ export default function OpenAIChat() {
           <option value="Date">Date</option>
         </select>
         <select
+          aria-selected={priceRange ? "true" : "false"}
           value={priceRange}
           onChange={e => setPriceRange(e.target.value)}
-          className="border p-2"
+          className="border-2 border-purple-400 p-2 rounded-bl-lg rounded-tr-lg"
         >
           <option value="">Select price range</option>
           <option value="Cheap price">Cheap</option>
@@ -86,7 +89,8 @@ export default function OpenAIChat() {
         <select
           value={distance}
           onChange={e => setDistance(e.target.value)}
-          className="border p-2"
+          aria-selected={distance ? "true" : "false"}
+          className="border-2 border-purple-400 p-2 rounded-bl-lg rounded-tr-lg"
         >
           <option value="">Select distance</option>
           <option value="Walking distance">Walking distance</option>
@@ -94,19 +98,20 @@ export default function OpenAIChat() {
           <option value="Within 10 miles">Within 10 miles</option>
           <option value="No distance preference">No distance preference</option>
         </select>
-        <textarea className="resize border p-2"
+        <textarea className="resize border-2 border-purple-400 p-2 rounded-bl-lg rounded-tr-lg"
+          aria-selected={prompt ? "true" : "false"}
           value={prompt}
           onChange={e => setPrompt(e.target.value)}
           rows={4}
           placeholder="Tell us what you are craving ..."
           required
         />
-        <div>
+        <div className="mt-2 flex gap-2">
 
-          <button type="submit" disabled={loading} style={{ padding: 8 }}>
+          <button type="submit" disabled={loading} className="border-2 border-orange-400 p-1 rounded-bl-lg rounded-tr-lg">
             {loading ? "Loading..." : "Send"}
           </button>
-          <button type="reset" style={{ padding: 8 }} onClick={() => { requestFormReset() }}>Reset</button>
+          <button type="reset"  className="border-2 border-purple-400 p-1 rounded-bl-lg rounded-tr-lg" onClick={() => { requestFormReset() }}>Reset</button>
           </div>
       </form>
       {location && (
