@@ -6,8 +6,8 @@ function splitResponseSections(text: string): string[] {
 
 function createMapURL(text:string): string {
     // const match = text.match(/- Address: (.*?)(?:\\n|$)/);
-    const match = text.match(/- Address:\s*(.+)/i);
-    const address = match ? match[1].trim() : "";
+    const match = text.match(/Address:\s*(.*)$/m);
+    const address = match ? match[1].trim() : ""; 
     const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
     return mapsUrl;
 }
