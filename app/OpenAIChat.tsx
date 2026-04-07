@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useGeoLocation } from "./hooks/useGeoLocation";
 import ResponseUI from "./ResponseUI";
 
@@ -12,6 +12,8 @@ export default function OpenAIChat() {
   const [priceRange, setPriceRange] = useState("");
   const [distance, setDistance] = useState("");
   const location = useGeoLocation();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => { setMounted(true); }, []);
 
   async function handleSubmit(e: React.SubmitEvent) {
     e.preventDefault();
@@ -52,7 +54,14 @@ export default function OpenAIChat() {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} className="flex flex-col gap-3 *:aria-selected:border-orange-400 *:focus:outline-none">
+      <form
+        onSubmit={handleSubmit}
+        className={
+          mounted
+            ? "flex flex-col gap-3 *:aria-selected:border-orange-400 *:focus:outline-none"
+            : "flex flex-col gap-3"
+        }
+      >
         <select
           value={mealtime}
           onChange={e => setMealtime(e.target.value)}
